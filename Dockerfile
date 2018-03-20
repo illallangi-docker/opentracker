@@ -1,6 +1,6 @@
 FROM alpine
 
-MAINTAINER Lednerb <code@lednerb.de>
+MAINTAINER Andrew Cole <andrew.cole@illallangi.com>
 
 WORKDIR /tmp
 
@@ -20,6 +20,8 @@ RUN apk add --no-cache \
 
 	&& git clone git://erdgeist.org/opentracker \
 		&& cd opentracker \
+    && sed -i '/^#.*WANT_IP_FROM_PROXY/s/^#//' Makefile \
+    && sed -i '/accesslist_isblessed( cookie->ip, OT_PERMISSION_MAY_PROXY )/s/accesslist_isblessed( cookie->ip, OT_PERMISSION_MAY_PROXY )/1/' ot_http.c \
 		&& make \
 
 	&& mv /tmp/opentracker/opentracker /bin/ \

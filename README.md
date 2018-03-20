@@ -1,20 +1,22 @@
 # opentracker-docker 
-[![Docker Pulls](https://img.shields.io/docker/pulls/lednerb/opentracker-docker.svg?maxAge=2592000&style=flat-square)](https://hub.docker.com/r/lednerb/opentracker-docker/) [![Docker Stars](https://img.shields.io/docker/stars/lednerb/opentracker-docker.svg?maxAge=2592000&style=flat-square)](https://hub.docker.com/r/lednerb/opentracker-docker/)  [![license](https://img.shields.io/github/license/lednerb/opentracker-docker.svg?maxAge=2592000&style=flat-square)](https://github.com/Lednerb/opentracker-docker/blob/master/LICENSE) [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badge/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/illallangi-docker/opentracker.svg?maxAge=2592000&style=flat-square)](https://hub.docker.com/r/illallangi/opentracker/) [![Docker Stars](https://img.shields.io/docker/stars/illallangi/opentracker.svg?maxAge=2592000&style=flat-square)](https://hub.docker.com/r/illallangi/opentracker/)  [![license](https://img.shields.io/github/license/illallangi-docker/opentracker.svg?maxAge=2592000&style=flat-square)](https://github.com/illallangi-docker/opentracker/blob/master/LICENSE) [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badge/)
 
 
 With this repo you can easily run your own instance of the opentracker for bitorrent.
 
+This is a modified version of [lednerb/opentracker-docker](https://github.com/Lednerb/opentracker-docker) updated to enable -DWANT_IP_FROM_PROXY, to enable putting opentracker behind a forward HTTP proxy such as traefik.
+
 ## How to run an _open_ opentracker
 If you want to run a complete open tracker, just pull the docker image and start up a container:
 
-`docker run -d --name opentracker -p 6969:6969/udp -p 6969:6969 lednerb/opentracker-docker`
+`docker run -d --name opentracker -p 6969:6969/udp -p 6969:6969 illallangi/opentracker`
 
 This will bind the port `6969` to the docker container (UDP and TCP) and you're good to go.
 
 
 ## How to run a _customized_ opentracker instance
 
-If you want to config your opentracker instance, just download or `git clone` the [github repository](https://github.com/Lednerb/opentracker-docker/) and edit the `opentracker.conf` file.
+If you want to config your opentracker instance, just download or `git clone` the [github repository](https://github.com/illallangi-docker/opentracker/) and edit the `opentracker.conf` file.
 
 Now you have to build your own image as follows:
  1. Edit and save the `opentracker.conf` file
@@ -30,7 +32,7 @@ After building the docker image successfully you can start up a container:
 If you solely want to run the opentracker instance for specific torrents you have to whitelist them.
 
 Follow these steps to whitelist your .torrent files:
- 1. Download or `git clone` the [github repository](https://github.com/Lednerb/opentracker-docker/)
+ 1. Download or `git clone` the [github repository](https://github.com/illallangi-docker/opentracker/)
  2. Open the `whitelist.txt` file in your favorite editor
  3. Copy & Paste your torrent `info_hashes` into the file
  4. Uncomment line 37 in the `opentracker.conf`
